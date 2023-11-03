@@ -45,7 +45,7 @@ namespace FSManager2OBS
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbFSM = new System.Windows.Forms.GroupBox();
             this.tbFSMStatus = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -99,9 +99,10 @@ namespace FSManager2OBS
             this.label3 = new System.Windows.Forms.Label();
             this.tbOBSServer = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnOBSSaveSettings = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gbFSM.SuspendLayout();
             this.gbOBS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbResurfaceTransitionTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbResurfaceDelay)).BeginInit();
@@ -126,7 +127,7 @@ namespace FSManager2OBS
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1275, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(1030, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -214,14 +215,14 @@ namespace FSManager2OBS
             this.toolStripSplitButton1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 439);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1275, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1030, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(1228, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(983, 17);
             this.toolStripStatusLabel1.Spring = true;
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
@@ -235,21 +236,21 @@ namespace FSManager2OBS
             this.toolStripSplitButton1.Size = new System.Drawing.Size(32, 20);
             this.toolStripSplitButton1.Text = "toolStripSplitButton1";
             // 
-            // groupBox1
+            // gbFSM
             // 
-            this.groupBox1.Controls.Add(this.tbFSMStatus);
-            this.groupBox1.Controls.Add(this.listBox1);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.tbFSMPort);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.tbFSMServer);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 32);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(400, 404);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.gbFSM.Controls.Add(this.tbFSMStatus);
+            this.gbFSM.Controls.Add(this.listBox1);
+            this.gbFSM.Controls.Add(this.button1);
+            this.gbFSM.Controls.Add(this.tbFSMPort);
+            this.gbFSM.Controls.Add(this.label2);
+            this.gbFSM.Controls.Add(this.tbFSMServer);
+            this.gbFSM.Controls.Add(this.label1);
+            this.gbFSM.Location = new System.Drawing.Point(12, 32);
+            this.gbFSM.Name = "gbFSM";
+            this.gbFSM.Size = new System.Drawing.Size(400, 404);
+            this.gbFSM.TabIndex = 2;
+            this.gbFSM.TabStop = false;
+            this.gbFSM.Text = "FSManager";
             // 
             // tbFSMStatus
             // 
@@ -284,7 +285,6 @@ namespace FSManager2OBS
             this.tbFSMPort.Name = "tbFSMPort";
             this.tbFSMPort.Size = new System.Drawing.Size(267, 29);
             this.tbFSMPort.TabIndex = 3;
-            this.tbFSMPort.Text = "11112";
             // 
             // label2
             // 
@@ -301,7 +301,6 @@ namespace FSManager2OBS
             this.tbFSMServer.Name = "tbFSMServer";
             this.tbFSMServer.Size = new System.Drawing.Size(267, 29);
             this.tbFSMServer.TabIndex = 1;
-            this.tbFSMServer.Text = "127.0.0.1";
             // 
             // label1
             // 
@@ -314,6 +313,7 @@ namespace FSManager2OBS
             // 
             // gbOBS
             // 
+            this.gbOBS.Controls.Add(this.btnOBSSaveSettings);
             this.gbOBS.Controls.Add(this.cbResurfaceTransition);
             this.gbOBS.Controls.Add(this.cbResurfaceScene);
             this.gbOBS.Controls.Add(this.tbResurfaceTransitionTime);
@@ -361,7 +361,7 @@ namespace FSManager2OBS
             this.gbOBS.Controls.Add(this.label4);
             this.gbOBS.Location = new System.Drawing.Point(418, 32);
             this.gbOBS.Name = "gbOBS";
-            this.gbOBS.Size = new System.Drawing.Size(845, 404);
+            this.gbOBS.Size = new System.Drawing.Size(600, 404);
             this.gbOBS.TabIndex = 3;
             this.gbOBS.TabStop = false;
             this.gbOBS.Text = "OBS";
@@ -369,8 +369,9 @@ namespace FSManager2OBS
             // cbResurfaceTransition
             // 
             this.cbResurfaceTransition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbResurfaceTransition.Enabled = false;
             this.cbResurfaceTransition.FormattingEnabled = true;
-            this.cbResurfaceTransition.Location = new System.Drawing.Point(214, 371);
+            this.cbResurfaceTransition.Location = new System.Drawing.Point(215, 371);
             this.cbResurfaceTransition.Name = "cbResurfaceTransition";
             this.cbResurfaceTransition.Size = new System.Drawing.Size(112, 29);
             this.cbResurfaceTransition.TabIndex = 62;
@@ -378,15 +379,17 @@ namespace FSManager2OBS
             // cbResurfaceScene
             // 
             this.cbResurfaceScene.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbResurfaceScene.Enabled = false;
             this.cbResurfaceScene.FormattingEnabled = true;
-            this.cbResurfaceScene.Location = new System.Drawing.Point(399, 371);
+            this.cbResurfaceScene.Location = new System.Drawing.Point(403, 372);
             this.cbResurfaceScene.Name = "cbResurfaceScene";
             this.cbResurfaceScene.Size = new System.Drawing.Size(191, 29);
             this.cbResurfaceScene.TabIndex = 61;
             // 
             // tbResurfaceTransitionTime
             // 
-            this.tbResurfaceTransitionTime.Location = new System.Drawing.Point(330, 371);
+            this.tbResurfaceTransitionTime.Enabled = false;
+            this.tbResurfaceTransitionTime.Location = new System.Drawing.Point(333, 371);
             this.tbResurfaceTransitionTime.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -403,6 +406,7 @@ namespace FSManager2OBS
             // 
             // tbResurfaceDelay
             // 
+            this.tbResurfaceDelay.Enabled = false;
             this.tbResurfaceDelay.Location = new System.Drawing.Point(134, 371);
             this.tbResurfaceDelay.Maximum = new decimal(new int[] {
             50000,
@@ -415,6 +419,7 @@ namespace FSManager2OBS
             // 
             // btnResurface
             // 
+            this.btnResurface.Enabled = false;
             this.btnResurface.Location = new System.Drawing.Point(6, 371);
             this.btnResurface.Name = "btnResurface";
             this.btnResurface.Size = new System.Drawing.Size(122, 29);
@@ -426,8 +431,9 @@ namespace FSManager2OBS
             // cbWarmupTransition
             // 
             this.cbWarmupTransition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWarmupTransition.Enabled = false;
             this.cbWarmupTransition.FormattingEnabled = true;
-            this.cbWarmupTransition.Location = new System.Drawing.Point(214, 336);
+            this.cbWarmupTransition.Location = new System.Drawing.Point(215, 336);
             this.cbWarmupTransition.Name = "cbWarmupTransition";
             this.cbWarmupTransition.Size = new System.Drawing.Size(112, 29);
             this.cbWarmupTransition.TabIndex = 57;
@@ -435,15 +441,17 @@ namespace FSManager2OBS
             // cbWarmupScene
             // 
             this.cbWarmupScene.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWarmupScene.Enabled = false;
             this.cbWarmupScene.FormattingEnabled = true;
-            this.cbWarmupScene.Location = new System.Drawing.Point(399, 336);
+            this.cbWarmupScene.Location = new System.Drawing.Point(403, 337);
             this.cbWarmupScene.Name = "cbWarmupScene";
             this.cbWarmupScene.Size = new System.Drawing.Size(191, 29);
             this.cbWarmupScene.TabIndex = 56;
             // 
             // tbWarmupTransitionTime
             // 
-            this.tbWarmupTransitionTime.Location = new System.Drawing.Point(330, 336);
+            this.tbWarmupTransitionTime.Enabled = false;
+            this.tbWarmupTransitionTime.Location = new System.Drawing.Point(333, 336);
             this.tbWarmupTransitionTime.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -460,6 +468,7 @@ namespace FSManager2OBS
             // 
             // tbWarmupDelay
             // 
+            this.tbWarmupDelay.Enabled = false;
             this.tbWarmupDelay.Location = new System.Drawing.Point(134, 336);
             this.tbWarmupDelay.Maximum = new decimal(new int[] {
             50000,
@@ -472,6 +481,7 @@ namespace FSManager2OBS
             // 
             // btnWarmup
             // 
+            this.btnWarmup.Enabled = false;
             this.btnWarmup.Location = new System.Drawing.Point(6, 336);
             this.btnWarmup.Name = "btnWarmup";
             this.btnWarmup.Size = new System.Drawing.Size(122, 29);
@@ -483,8 +493,9 @@ namespace FSManager2OBS
             // cbScoreTransition
             // 
             this.cbScoreTransition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbScoreTransition.Enabled = false;
             this.cbScoreTransition.FormattingEnabled = true;
-            this.cbScoreTransition.Location = new System.Drawing.Point(214, 301);
+            this.cbScoreTransition.Location = new System.Drawing.Point(215, 301);
             this.cbScoreTransition.Name = "cbScoreTransition";
             this.cbScoreTransition.Size = new System.Drawing.Size(112, 29);
             this.cbScoreTransition.TabIndex = 52;
@@ -492,15 +503,17 @@ namespace FSManager2OBS
             // cbScoreScene
             // 
             this.cbScoreScene.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbScoreScene.Enabled = false;
             this.cbScoreScene.FormattingEnabled = true;
-            this.cbScoreScene.Location = new System.Drawing.Point(399, 301);
+            this.cbScoreScene.Location = new System.Drawing.Point(403, 302);
             this.cbScoreScene.Name = "cbScoreScene";
             this.cbScoreScene.Size = new System.Drawing.Size(191, 29);
             this.cbScoreScene.TabIndex = 51;
             // 
             // tbScoreTransitionTime
             // 
-            this.tbScoreTransitionTime.Location = new System.Drawing.Point(330, 301);
+            this.tbScoreTransitionTime.Enabled = false;
+            this.tbScoreTransitionTime.Location = new System.Drawing.Point(333, 301);
             this.tbScoreTransitionTime.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -517,6 +530,7 @@ namespace FSManager2OBS
             // 
             // tbScoreDelay
             // 
+            this.tbScoreDelay.Enabled = false;
             this.tbScoreDelay.Location = new System.Drawing.Point(134, 301);
             this.tbScoreDelay.Maximum = new decimal(new int[] {
             50000,
@@ -534,6 +548,7 @@ namespace FSManager2OBS
             // 
             // btnScore
             // 
+            this.btnScore.Enabled = false;
             this.btnScore.Location = new System.Drawing.Point(6, 301);
             this.btnScore.Name = "btnScore";
             this.btnScore.Size = new System.Drawing.Size(122, 29);
@@ -581,8 +596,9 @@ namespace FSManager2OBS
             // cbFinishedTransition
             // 
             this.cbFinishedTransition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFinishedTransition.Enabled = false;
             this.cbFinishedTransition.FormattingEnabled = true;
-            this.cbFinishedTransition.Location = new System.Drawing.Point(214, 266);
+            this.cbFinishedTransition.Location = new System.Drawing.Point(215, 267);
             this.cbFinishedTransition.Name = "cbFinishedTransition";
             this.cbFinishedTransition.Size = new System.Drawing.Size(112, 29);
             this.cbFinishedTransition.TabIndex = 43;
@@ -590,6 +606,7 @@ namespace FSManager2OBS
             // cbStartedTransition
             // 
             this.cbStartedTransition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbStartedTransition.Enabled = false;
             this.cbStartedTransition.FormattingEnabled = true;
             this.cbStartedTransition.Location = new System.Drawing.Point(215, 231);
             this.cbStartedTransition.Name = "cbStartedTransition";
@@ -599,8 +616,9 @@ namespace FSManager2OBS
             // cbOnIceTransition
             // 
             this.cbOnIceTransition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbOnIceTransition.Enabled = false;
             this.cbOnIceTransition.FormattingEnabled = true;
-            this.cbOnIceTransition.Location = new System.Drawing.Point(215, 196);
+            this.cbOnIceTransition.Location = new System.Drawing.Point(215, 195);
             this.cbOnIceTransition.Name = "cbOnIceTransition";
             this.cbOnIceTransition.Size = new System.Drawing.Size(112, 29);
             this.cbOnIceTransition.TabIndex = 41;
@@ -608,8 +626,9 @@ namespace FSManager2OBS
             // cbFinishedScene
             // 
             this.cbFinishedScene.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFinishedScene.Enabled = false;
             this.cbFinishedScene.FormattingEnabled = true;
-            this.cbFinishedScene.Location = new System.Drawing.Point(399, 266);
+            this.cbFinishedScene.Location = new System.Drawing.Point(403, 267);
             this.cbFinishedScene.Name = "cbFinishedScene";
             this.cbFinishedScene.Size = new System.Drawing.Size(191, 29);
             this.cbFinishedScene.TabIndex = 40;
@@ -617,8 +636,9 @@ namespace FSManager2OBS
             // cbStartedScene
             // 
             this.cbStartedScene.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbStartedScene.Enabled = false;
             this.cbStartedScene.FormattingEnabled = true;
-            this.cbStartedScene.Location = new System.Drawing.Point(400, 231);
+            this.cbStartedScene.Location = new System.Drawing.Point(403, 232);
             this.cbStartedScene.Name = "cbStartedScene";
             this.cbStartedScene.Size = new System.Drawing.Size(191, 29);
             this.cbStartedScene.TabIndex = 39;
@@ -626,15 +646,17 @@ namespace FSManager2OBS
             // cbOnIceScene
             // 
             this.cbOnIceScene.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbOnIceScene.Enabled = false;
             this.cbOnIceScene.FormattingEnabled = true;
-            this.cbOnIceScene.Location = new System.Drawing.Point(400, 196);
+            this.cbOnIceScene.Location = new System.Drawing.Point(403, 196);
             this.cbOnIceScene.Name = "cbOnIceScene";
             this.cbOnIceScene.Size = new System.Drawing.Size(191, 29);
             this.cbOnIceScene.TabIndex = 38;
             // 
             // tbFinishedTransitionTime
             // 
-            this.tbFinishedTransitionTime.Location = new System.Drawing.Point(330, 266);
+            this.tbFinishedTransitionTime.Enabled = false;
+            this.tbFinishedTransitionTime.Location = new System.Drawing.Point(333, 267);
             this.tbFinishedTransitionTime.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -651,6 +673,7 @@ namespace FSManager2OBS
             // 
             // tbFinishedDelay
             // 
+            this.tbFinishedDelay.Enabled = false;
             this.tbFinishedDelay.Location = new System.Drawing.Point(134, 266);
             this.tbFinishedDelay.Maximum = new decimal(new int[] {
             50000,
@@ -668,6 +691,7 @@ namespace FSManager2OBS
             // 
             // btnFinished
             // 
+            this.btnFinished.Enabled = false;
             this.btnFinished.Location = new System.Drawing.Point(6, 266);
             this.btnFinished.Name = "btnFinished";
             this.btnFinished.Size = new System.Drawing.Size(122, 29);
@@ -678,7 +702,8 @@ namespace FSManager2OBS
             // 
             // tbStartedTransitionTime
             // 
-            this.tbStartedTransitionTime.Location = new System.Drawing.Point(331, 231);
+            this.tbStartedTransitionTime.Enabled = false;
+            this.tbStartedTransitionTime.Location = new System.Drawing.Point(333, 232);
             this.tbStartedTransitionTime.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -695,7 +720,8 @@ namespace FSManager2OBS
             // 
             // tbStartedDelay
             // 
-            this.tbStartedDelay.Location = new System.Drawing.Point(135, 231);
+            this.tbStartedDelay.Enabled = false;
+            this.tbStartedDelay.Location = new System.Drawing.Point(134, 231);
             this.tbStartedDelay.Maximum = new decimal(new int[] {
             50000,
             0,
@@ -707,6 +733,7 @@ namespace FSManager2OBS
             // 
             // btnStarted
             // 
+            this.btnStarted.Enabled = false;
             this.btnStarted.Location = new System.Drawing.Point(6, 231);
             this.btnStarted.Name = "btnStarted";
             this.btnStarted.Size = new System.Drawing.Size(122, 29);
@@ -717,7 +744,8 @@ namespace FSManager2OBS
             // 
             // tbOnIceTransitionTime
             // 
-            this.tbOnIceTransitionTime.Location = new System.Drawing.Point(332, 196);
+            this.tbOnIceTransitionTime.Enabled = false;
+            this.tbOnIceTransitionTime.Location = new System.Drawing.Point(333, 195);
             this.tbOnIceTransitionTime.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -734,13 +762,15 @@ namespace FSManager2OBS
             // 
             // tbOnIceDelay
             // 
-            this.tbOnIceDelay.Location = new System.Drawing.Point(135, 196);
+            this.tbOnIceDelay.Enabled = false;
+            this.tbOnIceDelay.Location = new System.Drawing.Point(134, 195);
             this.tbOnIceDelay.Name = "tbOnIceDelay";
             this.tbOnIceDelay.Size = new System.Drawing.Size(74, 29);
             this.tbOnIceDelay.TabIndex = 25;
             // 
             // btnOnIce
             // 
+            this.btnOnIce.Enabled = false;
             this.btnOnIce.Location = new System.Drawing.Point(6, 196);
             this.btnOnIce.Name = "btnOnIce";
             this.btnOnIce.Size = new System.Drawing.Size(122, 29);
@@ -754,18 +784,18 @@ namespace FSManager2OBS
             this.lbOBSWSVersion.AutoSize = true;
             this.lbOBSWSVersion.Location = new System.Drawing.Point(537, 52);
             this.lbOBSWSVersion.Name = "lbOBSWSVersion";
-            this.lbOBSWSVersion.Size = new System.Drawing.Size(99, 21);
+            this.lbOBSWSVersion.Size = new System.Drawing.Size(37, 21);
             this.lbOBSWSVersion.TabIndex = 13;
-            this.lbOBSWSVersion.Text = "OBS Version:";
+            this.lbOBSWSVersion.Text = "?.?.?";
             // 
             // lbOBSVersion
             // 
             this.lbOBSVersion.AutoSize = true;
             this.lbOBSVersion.Location = new System.Drawing.Point(537, 31);
             this.lbOBSVersion.Name = "lbOBSVersion";
-            this.lbOBSVersion.Size = new System.Drawing.Size(99, 21);
+            this.lbOBSVersion.Size = new System.Drawing.Size(37, 21);
             this.lbOBSVersion.TabIndex = 12;
-            this.lbOBSVersion.Text = "OBS Version:";
+            this.lbOBSVersion.Text = "?.?.?";
             // 
             // label7
             // 
@@ -799,9 +829,8 @@ namespace FSManager2OBS
             // 
             this.tbOBSPassword.Location = new System.Drawing.Point(137, 99);
             this.tbOBSPassword.Name = "tbOBSPassword";
-            this.tbOBSPassword.Size = new System.Drawing.Size(267, 29);
+            this.tbOBSPassword.Size = new System.Drawing.Size(256, 29);
             this.tbOBSPassword.TabIndex = 9;
-            this.tbOBSPassword.Text = "sAZtsKOeJSinGoQY";
             // 
             // label5
             // 
@@ -816,9 +845,8 @@ namespace FSManager2OBS
             // 
             this.tbOBSPort.Location = new System.Drawing.Point(137, 63);
             this.tbOBSPort.Name = "tbOBSPort";
-            this.tbOBSPort.Size = new System.Drawing.Size(267, 29);
+            this.tbOBSPort.Size = new System.Drawing.Size(256, 29);
             this.tbOBSPort.TabIndex = 7;
-            this.tbOBSPort.Text = "4455";
             // 
             // label3
             // 
@@ -833,9 +861,8 @@ namespace FSManager2OBS
             // 
             this.tbOBSServer.Location = new System.Drawing.Point(137, 28);
             this.tbOBSServer.Name = "tbOBSServer";
-            this.tbOBSServer.Size = new System.Drawing.Size(267, 29);
+            this.tbOBSServer.Size = new System.Drawing.Size(256, 29);
             this.tbOBSServer.TabIndex = 5;
-            this.tbOBSServer.Text = "ws://127.0.0.1";
             // 
             // label4
             // 
@@ -846,13 +873,23 @@ namespace FSManager2OBS
             this.label4.TabIndex = 4;
             this.label4.Text = "Server Address";
             // 
+            // btnOBSSaveSettings
+            // 
+            this.btnOBSSaveSettings.Location = new System.Drawing.Point(400, 134);
+            this.btnOBSSaveSettings.Name = "btnOBSSaveSettings";
+            this.btnOBSSaveSettings.Size = new System.Drawing.Size(191, 29);
+            this.btnOBSSaveSettings.TabIndex = 63;
+            this.btnOBSSaveSettings.Text = "Save OBS Settings";
+            this.btnOBSSaveSettings.UseVisualStyleBackColor = true;
+            this.btnOBSSaveSettings.Click += new System.EventHandler(this.btnOBSSaveSettings_Click);
+            // 
             // formFSM2OBS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1275, 461);
+            this.ClientSize = new System.Drawing.Size(1030, 461);
             this.Controls.Add(this.gbOBS);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbFSM);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -864,8 +901,8 @@ namespace FSManager2OBS
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbFSM.ResumeLayout(false);
+            this.gbFSM.PerformLayout();
             this.gbOBS.ResumeLayout(false);
             this.gbOBS.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbResurfaceTransitionTime)).EndInit();
@@ -902,7 +939,7 @@ namespace FSManager2OBS
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbFSM;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox tbFSMPort;
         private System.Windows.Forms.Label label2;
@@ -921,22 +958,14 @@ namespace FSManager2OBS
         private System.Windows.Forms.Label lbOBSVersion;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown tbOnIceTransitionTime;
-        private System.Windows.Forms.NumericUpDown tbOnIceDelay;
         private System.Windows.Forms.Button btnOnIce;
         private System.Windows.Forms.NumericUpDown tbFinishedTransitionTime;
         private System.Windows.Forms.NumericUpDown tbFinishedDelay;
         private System.Windows.Forms.Button btnFinished;
-        private System.Windows.Forms.NumericUpDown tbStartedTransitionTime;
-        private System.Windows.Forms.NumericUpDown tbStartedDelay;
         private System.Windows.Forms.Button btnStarted;
         private System.Windows.Forms.TextBox tbFSMStatus;
-        private System.Windows.Forms.ComboBox cbOnIceScene;
         private System.Windows.Forms.ComboBox cbFinishedScene;
-        private System.Windows.Forms.ComboBox cbStartedScene;
-        private System.Windows.Forms.ComboBox cbOnIceTransition;
         private System.Windows.Forms.ComboBox cbFinishedTransition;
-        private System.Windows.Forms.ComboBox cbStartedTransition;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cbScoreTransition;
@@ -956,6 +985,15 @@ namespace FSManager2OBS
         private System.Windows.Forms.NumericUpDown tbResurfaceTransitionTime;
         private System.Windows.Forms.NumericUpDown tbResurfaceDelay;
         private System.Windows.Forms.Button btnResurface;
+        private System.Windows.Forms.Button btnOBSSaveSettings;
+        private System.Windows.Forms.ComboBox cbStartedTransition;
+        private System.Windows.Forms.ComboBox cbOnIceTransition;
+        private System.Windows.Forms.ComboBox cbStartedScene;
+        private System.Windows.Forms.ComboBox cbOnIceScene;
+        private System.Windows.Forms.NumericUpDown tbStartedTransitionTime;
+        private System.Windows.Forms.NumericUpDown tbStartedDelay;
+        private System.Windows.Forms.NumericUpDown tbOnIceTransitionTime;
+        private System.Windows.Forms.NumericUpDown tbOnIceDelay;
     }
 }
 

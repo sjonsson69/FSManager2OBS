@@ -43,6 +43,13 @@ namespace FSManager2OBS
 
             //obs.VirtualcamStateChanged += onVirtualCamStateChanged;
 
+            tbFSMServer.Text = settings.FSM_Server;
+            tbFSMPort.Text = settings.FSM_Port;
+
+            tbOBSServer.Text = settings.OBS_Server;
+            tbOBSPort.Text = settings.OBS_Port;
+            tbOBSPassword.Text = settings.OBS_Password;
+
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -121,10 +128,19 @@ namespace FSManager2OBS
                 tbOBSPassword.Enabled = false;
                 btnOBSConnect.Text = "Disconnect";
 
-
                 var versionInfo = obs.GetVersion();
                 lbOBSVersion.Text = versionInfo.OBSStudioVersion;
                 lbOBSWSVersion.Text = versionInfo.PluginVersion;
+
+                btnOBSSaveSettings.Enabled = true;
+
+                btnOnIce.Enabled = true;
+                btnStarted.Enabled = true;
+                btnFinished.Enabled = true;
+                btnScore.Enabled = true;
+                btnWarmup.Enabled = true;
+                btnResurface.Enabled = true;
+
 
                 //Delay
                 tbOnIceDelay.Value = settings.delayOnIce;
@@ -133,6 +149,12 @@ namespace FSManager2OBS
                 tbScoreDelay.Value = settings.delayScore;
                 tbWarmupDelay.Value = settings.delayWarmup;
                 tbResurfaceDelay.Value = settings.delayResurface;
+                tbOnIceDelay.Enabled = true;
+                tbStartedDelay.Enabled = true;
+                tbFinishedDelay.Enabled = true;
+                tbScoreDelay.Enabled = true;
+                tbWarmupDelay.Enabled = true;
+                tbResurfaceDelay.Enabled = true;
 
                 //Load transisions
                 //Empty checkboxes
@@ -168,6 +190,13 @@ namespace FSManager2OBS
                 setComboBox(cbScoreTransition, settings.transitionScore);
                 setComboBox(cbWarmupTransition, settings.transitionWarmup);
                 setComboBox(cbResurfaceTransition, settings.transitionResurface);
+                //Enable
+                cbOnIceTransition.Enabled = true;
+                cbStartedTransition.Enabled = true;
+                cbFinishedTransition.Enabled = true;
+                cbScoreTransition.Enabled = true;
+                cbWarmupTransition.Enabled = true;
+                cbResurfaceTransition.Enabled = true;
 
 
                 //Duration
@@ -177,6 +206,12 @@ namespace FSManager2OBS
                 tbScoreTransitionTime.Value = settings.durationScore;
                 tbWarmupTransitionTime.Value = settings.durationWarmup;
                 tbResurfaceTransitionTime.Value = settings.durationResurface;
+                tbOnIceTransitionTime.Enabled = true;
+                tbStartedTransitionTime.Enabled = true;
+                tbFinishedTransitionTime.Enabled = true;
+                tbScoreTransitionTime.Enabled = true;
+                tbWarmupTransitionTime.Enabled = true;
+                tbResurfaceTransitionTime.Enabled = true;
 
 
                 //Load Scenes
@@ -212,6 +247,13 @@ namespace FSManager2OBS
                 setComboBox(cbScoreScene, settings.sceneScore);
                 setComboBox(cbWarmupScene, settings.sceneWarmup);
                 setComboBox(cbResurfaceScene, settings.sceneResurface);
+                //Enable
+                cbOnIceScene.Enabled = true;
+                cbStartedScene.Enabled = true;
+                cbFinishedScene.Enabled = true;
+                cbScoreScene.Enabled = true;
+                cbWarmupScene.Enabled = true;
+                cbResurfaceScene.Enabled = true;
 
 
 
@@ -321,6 +363,74 @@ namespace FSManager2OBS
                 lbOBSVersion.Text = "?.?.?";
                 lbOBSWSVersion.Text = "?.?.?";
 
+                btnOBSSaveSettings.Enabled = false;
+
+                btnOnIce.Enabled = false;
+                btnStarted.Enabled = false;
+                btnFinished.Enabled = false;
+                btnScore.Enabled = false;
+                btnWarmup.Enabled = false;
+                btnResurface.Enabled = false;
+
+                //Reset values
+                //Delay
+                tbOnIceDelay.Value = 0;
+                tbStartedDelay.Value = 0;
+                tbFinishedDelay.Value = 0;
+                tbScoreDelay.Value = 0;
+                tbWarmupDelay.Value = 0;
+                tbResurfaceDelay.Value = 0;
+                tbOnIceDelay.Enabled = false;
+                tbStartedDelay.Enabled = false;
+                tbFinishedDelay.Enabled = false;
+                tbScoreDelay.Enabled = false;
+                tbWarmupDelay.Enabled = false;
+                tbResurfaceDelay.Enabled = false;
+
+                //Transisions
+                cbOnIceTransition.Items.Clear();
+                cbStartedTransition.Items.Clear();
+                cbFinishedTransition.Items.Clear();
+                cbScoreTransition.Items.Clear();
+                cbWarmupTransition.Items.Clear();
+                cbResurfaceTransition.Items.Clear();
+                cbOnIceTransition.Enabled = false;
+                cbStartedTransition.Enabled = false;
+                cbFinishedTransition.Enabled = false;
+                cbScoreTransition.Enabled = false;
+                cbWarmupTransition.Enabled = false;
+                cbResurfaceTransition.Enabled = false;
+
+                //Duration
+                tbOnIceTransitionTime.Value = 0;
+                tbStartedTransitionTime.Value = 0;
+                tbFinishedTransitionTime.Value = 0;
+                tbScoreTransitionTime.Value = 0;
+                tbWarmupTransitionTime.Value = 0;
+                tbResurfaceTransitionTime.Value = 0;
+                tbOnIceTransitionTime.Enabled = false;
+                tbStartedTransitionTime.Enabled = false;
+                tbFinishedTransitionTime.Enabled = false;
+                tbScoreTransitionTime.Enabled = false;
+                tbWarmupTransitionTime.Enabled = false;
+                tbResurfaceTransitionTime.Enabled = false;
+
+                //Scenes
+                cbOnIceScene.Items.Clear();
+                cbStartedScene.Items.Clear();
+                cbFinishedScene.Items.Clear();
+                cbScoreScene.Items.Clear();
+                cbWarmupScene.Items.Clear();
+                cbResurfaceScene.Items.Clear();
+                cbOnIceScene.Enabled = false;
+                cbStartedScene.Enabled = false;
+                cbFinishedScene.Enabled = false;
+                cbScoreScene.Enabled = false;
+                cbWarmupScene.Enabled = false;
+                cbResurfaceScene.Enabled = false;
+
+
+                //Show message if disconnected unplanned
                 if (e.ObsCloseCode == OBSWebsocketDotNet.Communication.ObsCloseCodes.AuthenticationFailed)
                 {
                     MessageBox.Show("Authentication failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -332,7 +442,7 @@ namespace FSManager2OBS
                     {
                         MessageBox.Show($"Connection failed: CloseCode: {e.ObsCloseCode} Desc: {e.WebsocketDisconnectionInfo?.CloseStatusDescription} Exception:{e.WebsocketDisconnectionInfo?.Exception?.Message}\nType: {e.WebsocketDisconnectionInfo.Type}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
-                    else
+                    else if (e.WebsocketDisconnectionInfo.Type != Websocket.Client.DisconnectionType.Exit)
                     {
                         MessageBox.Show($"Connection failed: CloseCode: {e.ObsCloseCode} Desc: {e.WebsocketDisconnectionInfo?.CloseStatusDescription}\nType: {e.WebsocketDisconnectionInfo.Type}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
@@ -394,25 +504,17 @@ namespace FSManager2OBS
         private void btnOnIce_Click(object sender, EventArgs e)
         {
             switchScene("OnIce");
-            //await Task.Delay((int)tbOnIceDelay.Value);
-            //obs.SetCurrentSceneTransition(cbOnIceTransition.Text);
-            //obs.SetCurrentSceneTransitionDuration((int)tbOnIceTransitionTime.Value);
-            //obs.SetCurrentProgramScene(cbOnIceScene.Text);
         }
 
         private void btnStarted_Click(object sender, EventArgs e)
         {
             //Start replay buffer if not already started
-            //if (!obs.GetReplayBufferStatus())
-            //{
-            //    obs.StartReplayBuffer();
-            //}
+            if (!obs.GetReplayBufferStatus())
+            {
+                obs.StartReplayBuffer();
+            }
 
             switchScene("Started");
-            //await Task.Delay((int)tbStartedDelay.Value);
-            //obs.SetCurrentSceneTransition(cbStartedTransition.Text);
-            //obs.SetCurrentSceneTransitionDuration((int)tbStartedTransitionTime.Value);
-            //obs.SetCurrentProgramScene(cbStartedScene.Text);
         }
 
         private void btnFinished_Click(object sender, EventArgs e)
@@ -423,39 +525,21 @@ namespace FSManager2OBS
                 //obs.StopReplayBuffer();
             }
             switchScene("Finished");
-
-            //await Task.Delay((int)tbFinishedDelay.Value);
-            //obs.SetCurrentSceneTransition(cbFinishedTransition.Text);
-            //obs.SetCurrentSceneTransitionDuration((int)tbFinishedTransitionTime.Value);
-            //obs.SetCurrentProgramScene(cbFinishedScene.Text);
         }
 
         private void btnScore_Click(object sender, EventArgs e)
         {
             switchScene("Score");
-
-            //await Task.Delay((int)tbScoreDelay.Value);
-            //obs.SetCurrentSceneTransition(cbScoreTransition.Text);
-            //obs.SetCurrentSceneTransitionDuration((int)tbScoreTransitionTime.Value);
-            //obs.SetCurrentProgramScene(cbScoreScene.Text);
         }
 
         private void btnWarmup_Click(object sender, EventArgs e)
         {
             switchScene("Warmup");
-            //await Task.Delay((int)tbWarmupDelay.Value);
-            //obs.SetCurrentSceneTransition(cbWarmupTransition.Text);
-            //obs.SetCurrentSceneTransitionDuration((int)tbWarmupTransitionTime.Value);
-            //obs.SetCurrentProgramScene(cbWarmupScene.Text);
         }
 
         private void btnResurface_Click(object sender, EventArgs e)
         {
             switchScene("Resurface");
-            //await Task.Delay((int)tbResurfaceDelay.Value);
-            //obs.SetCurrentSceneTransition(cbResurfaceTransition.Text);
-            //obs.SetCurrentSceneTransitionDuration((int)tbResurfaceTransitionTime.Value);
-            //obs.SetCurrentProgramScene(cbResurfaceScene.Text);
         }
 
         private void tbFSMStatus_TextChanged(object sender, EventArgs e)
@@ -466,11 +550,53 @@ namespace FSManager2OBS
                 case "STARTED": switchScene("Started"); break;
                 case "FINISHED": switchScene("Finished"); break;
                 case "SCORE": switchScene("Score"); break;
-                case "WARMUP": switchScene("Warmup");break;
+                case "WARMUP": switchScene("Warmup"); break;
                 case "RESURFACE": switchScene("Resurface"); break;
                 default:
                     break;
             }
+        }
+
+        private void btnOBSSaveSettings_Click(object sender, EventArgs e)
+        {
+            // OBS Server
+            settings.OBS_Server = tbOBSServer.Text;
+            settings.OBS_Port = tbOBSPort.Text;
+            settings.OBS_Password = tbOBSPassword.Text;
+
+            //Delay
+            settings.delayOnIce = (int)tbOnIceDelay.Value;
+            settings.delayStarted = (int)tbStartedDelay.Value;
+            settings.delayFinished = (int)tbFinishedDelay.Value;
+            settings.delayScore = (int)tbScoreDelay.Value;
+            settings.delayWarmup = (int)tbWarmupDelay.Value;
+            settings.delayResurface = (int)tbResurfaceDelay.Value;
+
+            //Transisions
+            settings.transitionOnIce = cbOnIceTransition.Text;
+            settings.transitionStarted = cbStartedTransition.Text;
+            settings.transitionFinished = cbFinishedTransition.Text;
+            settings.transitionScore = cbScoreTransition.Text;
+            settings.transitionWarmup = cbWarmupTransition.Text;
+            settings.transitionResurface = cbResurfaceTransition.Text;
+
+            //Duration
+            settings.durationOnIce = (int)tbOnIceTransitionTime.Value;
+            settings.durationStarted = (int)tbStartedTransitionTime.Value;
+            settings.durationFinished = (int)tbFinishedTransitionTime.Value;
+            settings.durationScore = (int)tbScoreTransitionTime.Value;
+            settings.durationWarmup = (int)tbWarmupTransitionTime.Value;
+            settings.durationResurface = (int)tbResurfaceTransitionTime.Value;
+
+            //Scenes
+            settings.sceneOnIce = cbOnIceScene.Text;
+            settings.sceneStarted = cbStartedScene.Text;
+            settings.sceneFinished = cbFinishedScene.Text;
+            settings.sceneScore = cbScoreScene.Text;
+            settings.sceneWarmup = cbWarmupScene.Text;
+            settings.sceneResurface = cbResurfaceScene.Text;
+
+            MessageBox.Show("Settings saved", "OBS", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

@@ -50,6 +50,33 @@ namespace FSManager2OBS
             }
         }
 
+        public static string FSM_Server
+        {
+            get => getStringValue("FSM_Server");
+            set => saveAppSettings("FSM_Server", value);
+        }
+        public static string FSM_Port
+        {
+            get => getStringValue("FSM_Port");
+            set => saveAppSettings("FSM_Port", value);
+        }
+
+        public static string OBS_Server
+        {
+            get => getStringValue("OBS_Server");
+            set => saveAppSettings("OBS_Server", value);
+        }
+        public static string OBS_Port
+        {
+            get => getStringValue("OBS_Port");
+            set => saveAppSettings("OBS_Port", value);
+        }
+        public static string OBS_Password
+        {
+            get => getStringValue("OBS_Password");
+            set => saveAppSettings("OBS_Password", value);
+        }
+
         public static int delayOnIce
         {
             get => getIntValue("delayOnIce");
