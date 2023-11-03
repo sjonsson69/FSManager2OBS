@@ -111,12 +111,17 @@ namespace FSManager2OBS
                     }
                 }
             }
-            tbFSMStatus.Invoke((Action)delegate { tbFSMStatus.Text = status; });
+            if (msg.MsgType == eHovtpMessage.Result)
+            {
+                status = "SCORE";
+            }
 
-            Console.WriteLine(msg.MsgType.ToString());
+            if (status != string.Empty)
+            {
+                tbFSMStatus.Invoke((Action)delegate { tbFSMStatus.Text = status; });
+            }
             listBox1.Invoke((Action)delegate { listBox1.Items.Add(DateTime.Now.ToShortTimeString() + ":" + msg.MsgType.ToString() + "  " + status); });
             listBox1.Invoke((Action)delegate { listBox1.SelectedIndex = listBox1.Items.Count - 1; });
-            //}
         }
 
         private void onOBSConnect(object sender, EventArgs e)
@@ -484,20 +489,34 @@ namespace FSManager2OBS
 
         private async void switchScene(string scene)
         {
-            decimal delay = (gbOBS.Controls["tb" + scene + "Delay"] as NumericUpDown).Value;
-            string transition = (gbOBS.Controls["cb" + scene + "Transition"] as ComboBox).Text;
-            decimal duration = (gbOBS.Controls["tb" + scene + "TransitionTime"] as NumericUpDown).Value;
-            string programScene = (gbOBS.Controls["cb" + scene + "Scene"] as ComboBox).Text;
+            if (obs.IsConnected)
+            {
+                //Start replay buffer if not already started
+                if (scene == "Started" && !obs.GetReplayBufferStatus())
+                {
+                    obs.StartReplayBuffer();
+                }
+                if (scene == "Finished" && obs.GetReplayBufferStatus())
+                {
+                    obs.SaveReplayBuffer();
+                    //obs.StopReplayBuffer();
+                }
 
-            await Task.Delay((int)delay);
-            if (transition != string.Empty)
-            {
-                obs.SetCurrentSceneTransition(transition);
-                obs.SetCurrentSceneTransitionDuration((int)duration);
-            }
-            if (programScene != string.Empty)
-            {
-                obs.SetCurrentProgramScene(programScene);
+                decimal delay = (gbOBS.Controls["tb" + scene + "Delay"] as NumericUpDown).Value;
+                string transition = (gbOBS.Controls["cb" + scene + "Transition"] as ComboBox).Text;
+                decimal duration = (gbOBS.Controls["tb" + scene + "TransitionTime"] as NumericUpDown).Value;
+                string programScene = (gbOBS.Controls["cb" + scene + "Scene"] as ComboBox).Text;
+
+                await Task.Delay((int)delay);
+                if (transition != string.Empty)
+                {
+                    obs.SetCurrentSceneTransition(transition);
+                    obs.SetCurrentSceneTransitionDuration((int)duration);
+                }
+                if (programScene != string.Empty)
+                {
+                    obs.SetCurrentProgramScene(programScene);
+                }
             }
         }
 
@@ -508,22 +527,11 @@ namespace FSManager2OBS
 
         private void btnStarted_Click(object sender, EventArgs e)
         {
-            //Start replay buffer if not already started
-            if (!obs.GetReplayBufferStatus())
-            {
-                obs.StartReplayBuffer();
-            }
-
             switchScene("Started");
         }
 
         private void btnFinished_Click(object sender, EventArgs e)
         {
-            if (obs.GetReplayBufferStatus())
-            {
-                obs.SaveReplayBuffer();
-                //obs.StopReplayBuffer();
-            }
             switchScene("Finished");
         }
 
