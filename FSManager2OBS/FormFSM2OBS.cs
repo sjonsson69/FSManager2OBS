@@ -111,7 +111,7 @@ namespace FSManager2OBS
                     }
                 }
             }
-            if (msg.MsgType == eHovtpMessage.Result)
+            if (msg.MsgType == eHovtpMessage.CumulativeResult)
             {
                 status = "SCORE";
             }
